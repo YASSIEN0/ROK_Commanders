@@ -181,30 +181,31 @@ export const Home: React.FC = () => {
   return (
     <div className="space-y-16">
       {/* Hero Section */}
-      <section className="relative py-12 sm:py-20 overflow-hidden rounded-3xl bg-gradient-to-br from-orange-900/20 to-zinc-900 border border-white/5">
-        <div className="relative z-10 px-6 sm:px-8 max-w-3xl">
+      <section className="relative py-12 sm:py-24 overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-orange-900/20 via-zinc-900 to-black border border-white/5">
+        <div className="relative z-10 px-8 sm:px-12 max-w-4xl">
           <motion.h1 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl sm:text-7xl font-black tracking-tighter uppercase italic mb-4 sm:mb-6 leading-none"
+            className="text-5xl sm:text-8xl font-black tracking-tighter uppercase italic mb-6 sm:mb-8 leading-[0.85]"
           >
-            Rise of <span className="text-orange-500">Kingdoms</span>
+            Rise of <br />
+            <span className="text-orange-500">Kingdoms</span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-sm sm:text-lg text-zinc-400 leading-relaxed mb-6 sm:mb-8 max-w-xl"
+            className="text-base sm:text-xl text-zinc-400 leading-relaxed mb-8 sm:mb-12 max-w-xl font-medium"
           >
             Master the art of war with our comprehensive commander database and advanced battle simulator. 
             Analyze stats, plan talent builds, and calculate upgrade requirements to dominate the kingdom.
           </motion.p>
           
-          <div className="flex flex-wrap gap-2 sm:gap-3">
+          <div className="flex flex-wrap gap-3">
             <button
               onClick={() => setSelectedRarity(null)}
               className={cn(
-                "px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider border transition-all active:scale-95",
+                "px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-[10px] sm:text-xs font-black uppercase tracking-widest border transition-all active:scale-95",
                 !selectedRarity ? "bg-white text-black border-white" : "bg-white/5 text-zinc-400 border-white/10 hover:border-white/30"
               )}
             >
@@ -215,7 +216,7 @@ export const Home: React.FC = () => {
                 key={rarity}
                 onClick={() => setSelectedRarity(rarity)}
                 className={cn(
-                  "px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-[10px] sm:text-xs font-bold uppercase tracking-wider border transition-all active:scale-95",
+                  "px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-[10px] sm:text-xs font-black uppercase tracking-widest border transition-all active:scale-95",
                   selectedRarity === rarity 
                     ? cn("bg-opacity-100 text-white", RARITY_BG[rarity as keyof typeof RARITY_BG].split(' ')[0].replace('/10', ''))
                     : cn("bg-opacity-10 text-zinc-400 hover:text-white", RARITY_BG[rarity as keyof typeof RARITY_BG])
@@ -227,17 +228,23 @@ export const Home: React.FC = () => {
           </div>
         </div>
         
-        {/* Decorative element */}
-        <div className="absolute top-0 right-0 w-full sm:w-1/2 h-full opacity-10 sm:opacity-20 pointer-events-none">
-          <img 
-            src="https://picsum.photos/seed/rok-hero/800/800" 
-            alt="Hero Background" 
-            loading="lazy"
-            decoding="async"
-            className="w-full h-full object-cover grayscale"
-            referrerPolicy="no-referrer"
-          />
-          <div className="absolute inset-0 bg-gradient-to-l from-[#0a0a0a] via-transparent to-[#0a0a0a] sm:to-transparent" />
+        {/* Featured Commander Image - Right Side */}
+        <div className="absolute top-0 right-0 w-full lg:w-1/2 h-full pointer-events-none overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3, duration: 1.2, ease: "easeOut" }}
+            className="relative h-full w-full"
+          >
+            <img 
+              src={COMMANDER_IMAGES["Sun Tzu"]} 
+              alt="Sun Tzu" 
+              className="absolute right-[-5%] top-[5%] h-[110%] w-auto object-contain opacity-30 lg:opacity-50 grayscale hover:grayscale-0 transition-all duration-1000"
+              referrerPolicy="no-referrer"
+            />
+            <div className="absolute inset-0 bg-gradient-to-l from-black via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+          </motion.div>
         </div>
       </section>
 
